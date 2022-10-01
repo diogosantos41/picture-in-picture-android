@@ -1,4 +1,4 @@
-package com.didexcodes.pictureinpicture
+package com.didexcodes.pictureinpicture.utils
 
 import android.app.Activity
 import android.content.Context

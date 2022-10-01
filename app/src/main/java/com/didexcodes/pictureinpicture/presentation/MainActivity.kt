@@ -13,9 +13,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.didexcodes.pictureinpicture.data.DefaultPipReceiver
 import com.didexcodes.pictureinpicture.R
-import com.didexcodes.pictureinpicture.isPipSupported
+import com.didexcodes.pictureinpicture.utils.isPipSupported
 import com.didexcodes.pictureinpicture.ui.theme.PictureInPictureTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     var videoViewBounds: Rect? = null
