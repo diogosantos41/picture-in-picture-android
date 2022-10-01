@@ -1,4 +1,4 @@
-package com.didexcodes.pictureinpicture
+package com.didexcodes.pictureinpicture.presentation
 
 import android.app.PendingIntent
 import android.app.PictureInPictureParams
@@ -11,6 +11,9 @@ import android.os.Bundle
 import android.util.Rational
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.didexcodes.pictureinpicture.data.DefaultPipReceiver
+import com.didexcodes.pictureinpicture.R
+import com.didexcodes.pictureinpicture.isPipSupported
 import com.didexcodes.pictureinpicture.ui.theme.PictureInPictureTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,7 +44,7 @@ class MainActivity : ComponentActivity() {
                             PendingIntent.getBroadcast(
                                 applicationContext,
                                 0,
-                                Intent(applicationContext, PipReceiver::class.java),
+                                Intent(applicationContext, DefaultPipReceiver::class.java),
                                 PendingIntent.FLAG_IMMUTABLE
                             )
                         )
