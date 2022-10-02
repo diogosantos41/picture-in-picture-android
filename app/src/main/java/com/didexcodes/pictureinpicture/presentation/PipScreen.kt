@@ -51,6 +51,7 @@ fun PipScreen(viewModel: PipViewModel = hiltViewModel()) {
             factory = {
                 videoView.apply {
                     setVideoURI(Uri.parse("android.resource://${context.packageName}/${R.raw.video}"))
+                    setOnPreparedListener { it.isLooping = true }
                     start()
                 }
             },

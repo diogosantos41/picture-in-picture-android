@@ -2,8 +2,8 @@ package com.didexcodes.pictureinpicture.domain
 
 import kotlinx.coroutines.flow.Flow
 
-interface PipReceiver {
+interface PipClient {
 
-    fun toggleVideoPlay(): Flow<Boolean>
+    fun getPipUpdate(): Flow<Boolean>
 
 }

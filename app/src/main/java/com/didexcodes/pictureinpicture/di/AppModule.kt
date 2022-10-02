@@ -1,7 +1,7 @@
 package com.didexcodes.pictureinpicture.di
 
-import com.didexcodes.pictureinpicture.data.DefaultPipReceiver
-import com.didexcodes.pictureinpicture.domain.PipReceiver
+import com.didexcodes.pictureinpicture.data.DefaultPipClient
+import com.didexcodes.pictureinpicture.domain.PipClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +14,7 @@ internal object AppModule {
 
     @Provides
     @Singleton
-    fun providePipReceiver(): PipReceiver {
-        return DefaultPipReceiver()
+    fun providePipReceiver(): PipClient {
+        return DefaultPipClient()
     }
 }

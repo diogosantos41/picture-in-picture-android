@@ -11,8 +11,9 @@ import android.os.Bundle
 import android.util.Rational
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.didexcodes.pictureinpicture.data.DefaultPipReceiver
+import com.didexcodes.pictureinpicture.data.DefaultPipClient
 import com.didexcodes.pictureinpicture.R
+import com.didexcodes.pictureinpicture.data.PipBroadcastReceiver
 import com.didexcodes.pictureinpicture.utils.isPipSupported
 import com.didexcodes.pictureinpicture.ui.theme.PictureInPictureTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
                             PendingIntent.getBroadcast(
                                 applicationContext,
                                 0,
-                                Intent(applicationContext, DefaultPipReceiver::class.java),
+                                Intent(applicationContext, PipBroadcastReceiver::class.java),
                                 PendingIntent.FLAG_IMMUTABLE
                             )
                         )
