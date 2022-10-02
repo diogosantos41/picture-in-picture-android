@@ -50,7 +50,7 @@ fun PipScreen(viewModel: PipViewModel = hiltViewModel()) {
         AndroidView(
             factory = {
                 videoView.apply {
-                    setVideoURI(Uri.parse("android.resource://${context.packageName}/${R.raw.sample}"))
+                    setVideoURI(Uri.parse("android.resource://${context.packageName}/${R.raw.video}"))
                     start()
                 }
             },
