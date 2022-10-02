@@ -31,7 +31,7 @@ class PipViewModel @Inject constructor(private val pipReceiver: PipReceiver) : V
 
     private fun observePipClick() {
         viewModelScope.launch {
-            pipReceiver.toggleVideoPlay().collect() {
+            pipReceiver.toggleVideoPlay().collect {
                 toggleVideoPlay()
             }
         }
