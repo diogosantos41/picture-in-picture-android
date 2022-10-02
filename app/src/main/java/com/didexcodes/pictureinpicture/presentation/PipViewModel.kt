@@ -7,13 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.didexcodes.pictureinpicture.R
 import com.didexcodes.pictureinpicture.domain.PipClient
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PipViewModel @Inject constructor(private val pipReceiver: PipClient) : ViewModel() {
+class PipViewModel @Inject constructor(private val pipClient: PipClient) : ViewModel() {
 
     private val _state = mutableStateOf(PipState(mediaIconId = R.drawable.ic_pause))
     val state: State<PipState> = _state
@@ -28,11 +27,12 @@ class PipViewModel @Inject constructor(private val pipReceiver: PipClient) : Vie
     }
 
     private fun observePipClick() {
-        viewModelScope.launch {
-            pipReceiver.getPipUpdate().collect {
+        pipClient
+            .getPipUpdate()
+            .catch { e -> e.printStackTrace() }
+            .onEach {
                 toggleVideoPlay()
-            }
-        }
+            }.launchIn(viewModelScope)
     }
 
     fun toggleVideoPlay() {

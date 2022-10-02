@@ -14,7 +14,7 @@ internal object AppModule {
 
     @Provides
     @Singleton
-    fun providePipReceiver(): PipClient {
+    fun providePipClient(): PipClient {
         return DefaultPipClient()
     }
 }

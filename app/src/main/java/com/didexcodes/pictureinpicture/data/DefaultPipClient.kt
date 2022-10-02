@@ -4,6 +4,7 @@ import com.didexcodes.pictureinpicture.domain.PipClient
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.launch
 
 class DefaultPipClient : PipClient {
 
@@ -11,7 +12,7 @@ class DefaultPipClient : PipClient {
         return callbackFlow {
             val pipReceiverInterface = object : PipBroadcastReceiver.PipReceiverInterface {
                 override fun onPipReceive() {
-                    trySend(true)
+                    launch { send(true) }
                 }
             }
             val broadcastReceiver = PipBroadcastReceiver()
