@@ -10,26 +10,24 @@ import kotlinx.coroutines.flow.callbackFlow
 
 class DefaultPipReceiver : PipReceiver, BroadcastReceiver() {
 
-    private lateinit var pipReceiverInterface: PipReceiverInterface
+    private var pipReceiverInterface: PipReceiverInterface? = null
 
     override fun toggleVideoPlay(): Flow<Boolean> {
-        return _pipReceiver
-    }
-
-    private val _pipReceiver = callbackFlow {
-        pipReceiverInterface = object : PipReceiverInterface {
-            override fun onReceive() {
-                trySend(true)
+        return callbackFlow {
+            pipReceiverInterface = object : PipReceiverInterface {
+                override fun onPipReceive() {
+                    trySend(true)
+                }
             }
+            awaitClose {}
         }
-        awaitClose {}
     }
 
-    override fun onReceive(p0: Context?, p1: Intent?) {
-        pipReceiverInterface.onReceive()
+    override fun onReceive(context: Context?, intent: Intent?) {
+        pipReceiverInterface?.onPipReceive()
     }
 
     interface PipReceiverInterface {
-        fun onReceive()
+        fun onPipReceive()
     }
 }
