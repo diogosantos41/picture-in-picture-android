@@ -4,6 +4,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface PipClient {
 
-    fun getPipUpdate(): Flow<Boolean>
+    fun isToPlayVideo(): Flow<Boolean>
 
 }

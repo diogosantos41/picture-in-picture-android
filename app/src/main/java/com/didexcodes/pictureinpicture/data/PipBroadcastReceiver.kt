@@ -3,6 +3,7 @@ package com.didexcodes.pictureinpicture.data
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.didexcodes.pictureinpicture.utils.Constant
 
 
 class PipBroadcastReceiver : BroadcastReceiver() {
@@ -10,7 +11,7 @@ class PipBroadcastReceiver : BroadcastReceiver() {
     private var pipReceiverInterface: PipReceiverInterface? = null
 
     interface PipReceiverInterface {
-        fun onPipReceive()
+        fun onPipReceive(action: Int)
     }
 
     fun registerListener(pipReceiverInterface: PipReceiverInterface) {
@@ -23,6 +24,9 @@ class PipBroadcastReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        pipReceiverInterface?.onPipReceive()
+        if (intent == null) {
+            return
+        }
+        pipReceiverInterface?.onPipReceive(intent.getIntExtra(Constant.ACTION_CONTROL, 0))
     }
 }
